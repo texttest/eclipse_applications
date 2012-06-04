@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         id="application"
+         point="org.eclipse.core.runtime.applications">
+      <application>
+         <run
+               class="org.storytext.rcp.gef.basic.Application">
+         </run>
+      </application>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            name="Perspective"
+            class="org.storytext.rcp.gef.basic.Perspective"
+            id="org.storytext.rcp.gef.basic">
+      </perspective>
+   </extension>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            name="Editor"
+            extensions="graph1"
+            class="org.storytext.rcp.gef.basic.BasicGraphicalEditor"
+            id="org.storytext.rcp.gef.basic.graph1">
+      </editor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            name="View"
+            class="org.storytext.rcp.gef.basic.View"
+            id="org.storytext.rcp.gef.basic.view">
+      </view>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="menu:org.eclipse.ui.main.menu">
+         <menu
+               label="File">
+            <command
+                  commandId="org.eclipse.ui.file.exit"
+                  label="Exit">
+            </command>
+         </menu>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.activities">
+      <activity
+            id="org.storytext.rcp.gef.basic.uiIdeActivity"
+            name="Ide Activity">
+      </activity>
+      <activityPatternBinding
+            activityId="org.storytext.rcp.gef.basic.uiIdeActivity"
+            pattern="org\.eclipse\.ui\.ide/*">
+      </activityPatternBinding>
+   </extension>
+   <extension
+         id="product"
+         point="org.eclipse.core.runtime.products">
+      <product
+            application="org.storytext.rcp.gef.basic.application"
+            name="org.storytext.rcp.gef.basic.product">
+         <property
+               name="appName"
+               value="org.storytext.rcp.gef.basic.product">
+         </property>
+      </product>
+   </extension>
+
+</plugin>

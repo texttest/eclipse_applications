@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         id="application"
+         point="org.eclipse.core.runtime.applications">
+      <application>
+         <run
+               class="org.storytext.rcp.tabselection.Application">
+         </run>
+      </application>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            name="Perspective"
+            class="org.storytext.rcp.tabselection.Perspective"
+            id="org.storytext.rcp.tabselection.perspective">
+      </perspective>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            allowMultiple="true"
+            class="org.storytext.rcp.tabselection.FirstView"
+            id="org.storytext.rcp.tabselection.view"
+            name="FirstView">
+      </view>
+      <view
+            allowMultiple="true"
+            class="org.storytext.rcp.tabselection.SecondView"
+            id="org.storytext.rcp.tabselection.view2"
+            name="SecondView"
+            restorable="true">
+      </view>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="menu:org.eclipse.ui.main.menu">
+         <menu
+               id="viewsMenu"
+               label="Views">
+            <command
+                  commandId="org.storytext.rcp.tabselection.openFirst"
+                  label="Open View 1"
+                  style="push">
+            </command>
+            <command
+                  commandId="org.storytext.rcp.tabselection.openSecond"
+                  label="Open View 2"
+                  style="push">
+            </command>
+            <command
+                  commandId="org.storytext.rcp.tabselection.showInView1"
+                  label="Show in View 1"
+                  style="push">
+            </command>
+            <command
+                  commandId="org.storytext.rcp.tabselection.showInView2"
+                  label="Show in View 2"
+                  style="push">
+            </command>
+            <command
+                  commandId="org.eclipse.ui.views.showView"
+                  label="Show Info View"
+                  style="push">
+            </command>
+         </menu>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            id="org.storytext.rcp.tabselection.openFirst"
+            name="Open first view">
+      </command>
+      <command
+            id="org.storytext.rcp.tabselection.openSecond"
+            name="Open second view">
+      </command>
+      <command
+            id="org.storytext.rcp.tabselection.showInView1"
+            name="Show in View 1">
+      </command>
+      <command
+            id="org.storytext.rcp.tabselection.showInView2"
+            name="Show in View 2">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="org.storytext.rcp.tabselection.OpenFirstViewHandler"
+            commandId="org.storytext.rcp.tabselection.openFirst">
+      </handler>
+      <handler
+            class="org.storytext.rcp.tabselection.OpenSecondViewHandler"
+            commandId="org.storytext.rcp.tabselection.openSecond">
+      </handler>
+      <handler
+            class="org.storytext.rcp.tabselection.ShowInView1Handler"
+            commandId="org.storytext.rcp.tabselection.showInView1">
+         <enabledWhen>
+            <with
+                  variable="activePart">
+               <instanceof
+                     value="org.storytext.rcp.tabselection.FirstView">
+               </instanceof>
+            </with>
+         </enabledWhen>
+      </handler>
+      <handler
+            class="org.storytext.rcp.tabselection.ShowInView2Handler"
+            commandId="org.storytext.rcp.tabselection.showInView2">
+         <enabledWhen>
+            <with
+                  variable="activePart">
+               <instanceof
+                     value="org.storytext.rcp.tabselection.SecondView">
+               </instanceof>
+            </with>
+         </enabledWhen>
+      </handler>
+   </extension>
+
+</plugin>
